@@ -6,92 +6,83 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Navbar Container */
+/* NAVBAR STYLES */
 .navbar-container {
   height: 8vh;
-  background: linear-gradient(90deg, #004d4d, #008080);
+  background: #e0f7f7;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   padding: 0 2rem;
+  box-shadow: 0 4px 12px rgba(0, 128, 128, 0.1);
+  border-bottom: 1px solid #b2dfdb;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-/* Logo Area (Clickable Image) */
+/* Logo */
 .nav-img {
   height: 100%;
-  width: 20%;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
 .nav-img img {
-  height: 80%;
-  border-radius: 20px;
-  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  height: 70%;
+  border-radius: 12px;
+  padding: 0.3rem;
   cursor: pointer;
-  padding: 0.4rem;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .nav-img img:hover {
-  background: rgba(0, 179, 179, 0.1);
+  background: rgba(0, 128, 128, 0.1);
   transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0, 128, 128, 0.5);
+  box-shadow: 0 4px 12px rgba(0, 128, 128, 0.2);
 }
 
-.nav-img img:active {
-  transform: scale(0.95);
-  background: rgba(0, 153, 153, 0.3);
-}
-
-/* Navigation List */
+/* Nav links */
 .nav-list {
-  width: 40%;
   display: flex;
-  justify-content: space-around;
+  gap: 2rem;
   align-items: center;
 }
 
 .nav-list p,
 .nav-profile p {
-  cursor: pointer;
+  font-weight: 500;
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  transition: background 0.3s ease, color 0.3s ease, transform 0.1s ease,
-    box-shadow 0.3s ease;
-  color: #ffffff;
-  user-select: none;
-  font-weight: 500;
+  color: #006666;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none; /* Prevent text selection */
+  -webkit-user-select: none; /* Prevent text selection in webkit browsers */
 }
 
 .nav-list p:hover,
 .nav-profile p:hover {
-  background: rgba(0, 179, 179, 0.3);
-  color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 179, 179, 0.3);
+  background: #ccf0f0;
+  color: #004d4d;
+  box-shadow: 0 2px 6px rgba(0, 128, 128, 0.2);
 }
 
 .nav-list p:active,
 .nav-profile p:active {
   transform: scale(0.95);
-  background: rgba(0, 153, 153, 0.5);
+  background: #b2dfdb;
 }
 
-/* Profile Section */
 .nav-profile {
-  width: 40%;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  gap: 1rem;
+  margin-right: 5rem;
 }
 
-.nav-profile p {
-  margin-right: 10rem;
-}
-
-/* Home Container */
+/* HOME CONTAINER */
 .home-container {
   background: #f5ffff;
   display: flex;
@@ -100,7 +91,7 @@
   align-items: center;
 }
 
-/* Home Division Layout */
+/* HOME DIV 1 */
 .home-div-1 {
   height: 70vh;
   width: 100%;
@@ -111,7 +102,6 @@
   margin-top: 3rem;
 }
 
-/* Left Side Text Box */
 .hd11 {
   position: absolute;
   z-index: 2;
@@ -133,7 +123,6 @@
   font-size: 3rem;
   margin-top: 2rem;
   margin-left: 1rem;
-  margin-right: 1rem;
   color: #006666;
 }
 
@@ -141,20 +130,17 @@
   font-size: 2rem;
   margin-top: 4rem;
   margin-left: 1rem;
-  margin-right: 1rem;
   color: #008080;
 }
 
 .hd11 p {
   font-size: 1.2rem;
-  margin-left: 1rem;
   margin-top: 2rem;
-  margin-right: 1rem;
-  color: #333333;
+  margin-left: 1rem;
+  color: #333;
   line-height: 1.6;
 }
 
-/* Right Side Image */
 .hd12 {
   height: 100%;
   margin-right: 3rem;
@@ -173,7 +159,7 @@
   box-shadow: 0 10px 24px rgba(0, 128, 128, 0.35);
 }
 
-/* Home Division Layout */
+/* HOME DIV 2 */
 .home-div-2 {
   height: 70vh;
   width: 100%;
@@ -181,10 +167,9 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  margin-top: 3rem;
+  margin-top: 5rem;
 }
 
-/* right Side Text Box */
 .hd21 {
   position: absolute;
   z-index: 2;
@@ -204,30 +189,26 @@
 
 .hd21 h2 {
   font-size: 3rem;
-  margin-top: 1rem;
+  margin-top: 2rem;
   margin-left: 1rem;
-  margin-right: 1rem;
   color: #006666;
 }
 
 .hd21 h3 {
-  font-size: 1.5rem;
-  margin-top: 2rem;
+  font-size: 2rem;
+  margin-top: 3rem;
   margin-left: 1rem;
-  margin-right: 1rem;
   color: #008080;
 }
 
 .hd21 p {
   font-size: 1.2rem;
+  margin-top: 2rem;
   margin-left: 1rem;
-  margin-top: 1rem;
-  margin-right: 1rem;
   color: #333333;
   line-height: 1.6;
 }
 
-/* Left Side Image */
 .hd22 {
   height: 100%;
   margin-left: 3rem;
@@ -246,52 +227,58 @@
   box-shadow: 0 10px 24px rgba(0, 128, 128, 0.35);
 }
 
-/* Home Division Layout */
+/* HOME DIV 3 - Card Layout */
 .home-div-3 {
-  width: 100%;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  width: 80%;
+  margin: 4rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  background: #e6fafa;
+  border-top: 2px solid #b2dfdb;
+  border-bottom: 2px solid #b2dfdb;
+  border-radius: 20px;
 }
 
 .home-div-3 h1 {
-  font-size: 4rem;
-  margin-top: 1rem;
+  font-size: 3.5rem;
+  color: #004d4d;
+  margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
 .hd31 {
-  height: 30vh;
-  width: 70%;
-  margin-top: 2rem;
+  width: 90%;
+  margin: 2rem auto 4rem auto;
   display: flex;
-  justify-content: space-between;
+  gap: 2rem;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .hd311 {
-  height: 100%;
-  width: 40%;
+  flex: 1;
 }
 
 .hd311 img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 128, 128, 0.2);
 }
 
 .hd312 {
-  width: 55%;
+  flex: 2;
 }
 
 .hd312 h2 {
   font-size: 2rem;
+  color: #006666;
+  margin-bottom: 1rem;
 }
 
 .hd312 p {
   font-size: 1.2rem;
-  margin-top: 1rem;
+  color: #333;
+  line-height: 1.6;
 }

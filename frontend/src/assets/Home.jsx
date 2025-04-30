@@ -24,9 +24,7 @@ const Home = () => {
                 <div className="hd21">
                     <h2>🚀 The Future of Diagnosis Is Instant</h2>
                     <h3>Instant Medical Insights, Powered by Next-Gen AI</h3>
-                    <p>Imagine a hospital where test machines are directly integrated with our AI — the moment a lab test is 
-                       completed, Cura Scan analyzes the data and instantly detects possible diseases, eliminating long wait 
-                       times.Imagine a hospital where test machines are directly integrated with our AI — the moment a lab test 
+                    <p>Imagine a hospital where test machines are directly integrated with our AI — the moment a lab test 
                        is completed, Cura Scan analyzes the data and instantly detects possible diseases, eliminating long wait times.<br />
                        Not only that, it suggests the right doctor and treatment path, empowering healthcare providers to take action immediately.
                     </p>
@@ -60,8 +58,11 @@ const Home = () => {
                     </div>
                     <div className="hd312">
                         <h2>AI-powered prediction</h2>
-                        <p>At Cura Scan, our AI model is built to streamline healthcare diagnostics at scale. By simply maintaining patient information and inputting test results, our system takes care of the rest — analyzing data, detecting all possible diseases, and even recommending the right doctor and treatment path.
-With powerful data integration and prediction capabilities, Cura Scan delivers high-accuracy results across large datasets instantly, making diagnosis smarter, faster, and more accessible than ever.</p>
+                        <p>At Cura Scan, our AI model is built to streamline healthcare diagnostics at scale. By simply maintaining patient information 
+                           and inputting test results, our system takes care of the rest — analyzing data, detecting all possible diseases, and even recommending 
+                           the right doctor and treatment path. With powerful data integration and prediction capabilities, Cura Scan delivers high-accuracy results 
+                           across large datasets instantly, making diagnosis smarter, faster, and more accessible than ever.
+                        </p>
                     </div>
                 </div>
                 <div className="hd31">
