@@ -230,7 +230,7 @@
 /* HOME DIV 3 - Card Layout */
 .home-div-3 {
   width: 80%;
-  margin: 4rem 0;
+  margin-top: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -243,8 +243,8 @@
 .home-div-3 h1 {
   font-size: 3.5rem;
   color: #004d4d;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .hd31 {
@@ -281,4 +281,121 @@
   font-size: 1.2rem;
   color: #333;
   line-height: 1.6;
+}
+
+/* HOME DIV 4 */
+.home-div-4 {
+  width: 70%;
+  height: 50vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.hd41 {
+  position: absolute;
+  z-index: 2;
+  background: #ffffff;
+  width: 45%;
+  height: 80%;
+  margin-left: 5rem;
+  border-radius: 20px;
+  padding: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 128, 128, 0.15);
+  transition: box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hd41:hover {
+  box-shadow: 0 12px 28px rgba(0, 128, 128, 0.25);
+}
+
+.hd41 h2 {
+  font-size: 3rem;
+  color: #006666;
+}
+
+.hd41 button {
+  margin-top: 3rem;
+  background: linear-gradient(135deg, #1de9b6, #00bfa5);
+  color: #ffffff;
+  padding: 14px 36px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0, 191, 165, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.hd41 button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.4s ease-in-out;
+  z-index: 0;
+}
+
+.hd41 button:hover::after {
+  left: 100%;
+}
+
+.hd41 button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 191, 165, 0.5);
+}
+
+.hd41 button:active {
+  transform: scale(0.95);
+}
+
+.hd42 {
+  height: 100%;
+  margin-right: 3rem;
+}
+
+.hd42 img {
+  height: 100%;
+  width: auto;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 128, 128, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hd42 img:hover {
+  transform: scale(1.01);
+  box-shadow: 0 10px 24px rgba(0, 128, 128, 0.35);
+}
+
+.footer {
+  background: #e0f7f5;
+  color: #00695c;
+  padding: 30px 20px;
+  text-align: center;
+  border-top: 2px solid #b2dfdb;
+  font-family: "Segoe UI", sans-serif;
+  margin-top: 60px;
+}
+
+.footer-made p {
+  margin: 6px 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.footer-made strong {
+  color: #00bfa5;
 }

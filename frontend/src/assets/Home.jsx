@@ -36,7 +36,7 @@ const Home = () => {
             </div>
 
             <div className="home-div-3">
-                <h1>Still Wondering Why Cura Scan?</h1>
+                <h1>Still Wondering Why CuraScan?</h1>
                 <div className="hd31">
                     <div className="hd311">
                         <img src="ai.jpg" alt="ai" />
@@ -70,7 +70,7 @@ const Home = () => {
                         <img src="data.jpeg" alt="data" />
                     </div>
                     <div className="hd312">
-                        <h2>The Data That Powers Cura Scan</h2>
+                        <h2>The Data That Powers CuraScan</h2>
                         <p>Our AI is trained on a massive dataset of 100,000+ medical records, covering: <br />
                            • 100+ unique diseases <br />
                            • 50+ types of clinical tests <br />
@@ -78,6 +78,17 @@ const Home = () => {
                            Every data point is based on authentic clinical values, giving Cura Scan real-world insight into complex diagnostic patterns.
                         </p>
                     </div>
+                </div>
+            </div>
+
+            <div className="home-div-4">
+                <div className="hd41">
+                    <h2>⏱️ Time to Diagnose</h2>
+                    <button>Start Now!</button>
+                </div>
+                <div></div>
+                <div className="hd42">
+                    <img className="home_3" src="home_3.jpg" alt="home_3" />
                 </div>
             </div>
 
