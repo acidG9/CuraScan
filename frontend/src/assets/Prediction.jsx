@@ -4,6 +4,9 @@ import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 
 const Prediction = () => {
+
+  const [loading, setLoading] = React.useState(false);
+  const [results, setResults] = React.useState(null);
   const [formData, setFormData] = React.useState({
     // Blood Tests
     "CBC (Complete Blood Count)": "12.5",
@@ -252,9 +255,21 @@ const Prediction = () => {
     }
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
+    setLoading(true);
+    
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    
+    // Static demo data
+    setResults({
+      count: 2,
+      diseases: ['Hypertension', 'Type 2 Diabetes']
+    });
+    
+    setLoading(false);
   };
 
   return (
@@ -296,6 +311,34 @@ const Prediction = () => {
           <button type="submit">Submit All Results</button>
         </div>
       </form>
+
+      {results || loading ? (
+        <div className="results-section">
+          {loading ? (
+            <div className="shimmer-loading">
+              <div className="shimmer-line"></div>
+              <div className="shimmer-line"></div>
+              <div className="shimmer-line"></div>
+            </div>
+          ) : (
+            <div className="results-content">
+              <h3>Health Assessment Results</h3>
+              <div className="results-summary">
+                <p>Potential conditions detected: <strong>{results.count}</strong></p>
+                <div className="disease-list">
+                  <p>Possible conditions:</p>
+                  <ul>
+                    {results.diseases.map((disease, index) => (
+                      <li key={index}>{disease}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      ) : null}
+
     </div>
   );
 };
