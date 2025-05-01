@@ -387,7 +387,6 @@
   text-align: center;
   border-top: 2px solid #b2dfdb;
   font-family: "Segoe UI", sans-serif;
-  margin-top: 60px;
 }
 
 .footer-made p {
@@ -398,4 +397,132 @@
 
 .footer-made strong {
   color: #00bfa5;
+}
+
+.prediction-container {
+  max-width: 75%;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.form-section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #f8fafa;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 102, 102, 0.1);
+}
+
+.form-section h3 {
+  color: #006666;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #b2dfdb;
+  font-size: 1.3rem;
+}
+
+.input-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.input-item {
+  margin-bottom: 1rem;
+}
+
+.input-item label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #004d4d;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.input-group-slash {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.input-group-slash .JoyInput-root {
+  flex: 1;
+}
+
+.input-group-slash span {
+  color: #666;
+  font-weight: bold;
+}
+
+.JoyInput-root,
+.JoySelect-root {
+  width: 100%;
+  border-radius: 8px;
+  background: #ffffff;
+  transition: all 0.3s ease;
+  border: 1px solid #b2dfdb;
+  padding: 8px 12px;
+}
+
+.JoySelect-root {
+  padding: 6px 12px;
+}
+
+.JoyInput-root:hover,
+.JoySelect-root:hover {
+  border-color: #80cbc4;
+}
+
+.JoyInput-root:focus-within,
+.JoySelect-root:focus-within {
+  border-color: #00bfa5;
+  box-shadow: 0 0 0 3px rgba(0, 191, 165, 0.2);
+}
+
+.JoyInput-endDecorator {
+  color: #666;
+  font-size: 0.9em;
+  margin-left: 8px;
+}
+
+.submit-section {
+  text-align: center;
+  margin: 3rem 0;
+}
+
+button[type="submit"] {
+  background: #00bfa5;
+  color: white;
+  padding: 14px 50px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 128, 128, 0.2);
+}
+
+button[type="submit"]:hover {
+  background: #009688;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 128, 128, 0.3);
+}
+
+@media (max-width: 768px) {
+  .input-group {
+    grid-template-columns: 1fr;
+  }
+
+  .form-section {
+    padding: 1rem;
+  }
+
+  .input-group-slash {
+    flex-direction: column;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+  }
 }
