@@ -8,10 +8,11 @@ app.use(express.json());
 
 const cors = require('cors');
 
-app.use(cors({
-  origin: 'https://curascan.vercel.app/',
-  credentials: true,
-}));
+app.use(cors());
+
+app.get('/', (res) => {
+  res.send('CORS enabled');
+});
 
 const authRoutes = require('./routes/auth');
 const historyRoutes = require('./routes/history');
