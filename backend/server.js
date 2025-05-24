@@ -7,7 +7,11 @@ const app = express();
 app.use(express.json());
 
 const cors = require('cors');
-app.use(cors());
+
+app.use(cors({
+  origin: 'https://curascan.vercel.app/',
+  credentials: true,
+}));
 
 const authRoutes = require('./routes/auth');
 const historyRoutes = require('./routes/history');
