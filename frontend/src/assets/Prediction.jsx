@@ -2,274 +2,156 @@ import React from 'react';
 import Input from '@mui/joy/Input';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
+import Textarea from '@mui/joy/Textarea';
+import API from '../axios';
 
 const Prediction = () => {
-
   const [loading, setLoading] = React.useState(false);
   const [results, setResults] = React.useState(null);
+  const [freeSymptoms, setFreeSymptoms] = React.useState('');
   const [formData, setFormData] = React.useState({
-    // Blood Tests
-    "CBC (Complete Blood Count)": "12.5",
-    "LFT (Liver Function Test)": "25",
-    "RFT (Renal Function Test)": "0.9",
-    "Blood Glucose Test": "90",
-    "Lipid Profile": "170",
-    "Thyroid Function Test": "Normal",
-    "HbA1c Test": "5.2",
-    "PSA Test": "Normal",
-
-    // Imaging
-    "X-ray": "Normal",
-    "MRI": "Normal",
-    "CT Scan": "Normal",
-    "Ultrasound": "Normal",
-    "PET Scan": "Normal",
-    "Mammography": "Normal",
-    "Bone Density Test": "Normal",
-
-    // Cardiac Tests
-    "BP": "120/80",
-    "Echocardiogram": "Normal",
-    "ECG": "Normal",
-    "Holter Monitor": "Normal",
-    "Cardiac Stress Test": "Normal",
-    "Angiography": "Normal",
-
-    // Lung Function Tests
-    "Pulmonary Function Test": "Normal",
-    "COVID-19 Test": "Negative",
-    "Mantoux Test (TB Test)": "Normal",
-    "Intradermal Test": "Normal",
-
-    // Eye Tests
-    "Visual Acuity Test": "20/20",
-    "Tonometry": "15 mmHg",
-    "Retinal Examination": "Normal",
-    "Slit-Lamp Examination": "Normal",
-
-    // Ear Tests
-    "Audiometry": "Normal",
-    "Tympanometry": "Normal",
-    "Otoacoustic Emissions Test": "Normal",
-    "Auditory Brainstem Response (ABR)": "Normal",
-
-    // Infectious Disease Tests
-    "Blood Culture": "Negative",
-    "HIV Test": "Negative",
-    "Hepatitis Test": "Negative",
-    "Sputum Test": "Negative",
-
-    // Cancer Screenings
-    "Pap Smear": "Normal",
-    "Skin Biopsy": "Normal",
-    "Colonoscopy": "Normal",
-    "Endoscopy": "Normal",
-
-    // Other Diagnostics
-    "EEG": "Normal",
-    "EMG": "Normal",
+    "Age": "30",
+    "Gender": "Male",
+    "Weight (kg)": "70",
+    "Height (cm)": "170",
+    "Smoking": "No",
+    "Alcohol Consumption": "No",
+    "Blood Pressure": "120/80",
+    "Blood Glucose": "90",
+    "Cholesterol": "180",
+    "Heart Rate": "72",
+    "Body Temperature": "98.6",
     "Urinalysis": "Normal",
-    "Stool Test": "Normal",
-    "Allergy Test": "Normal",
-    "Genetic Testing": "Normal"
+    "Liver Function Test": "Normal",
+    "Kidney Function Test": "Normal",
+    "COVID-19 Test": "Negative",
+    "HIV Test": "Negative",
+    "ECG": "Normal",
+    "X-ray": "Normal"
   });
 
   const handleChange = (value, name) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleBpChange = (part, newValue) => {
-    const [systolic = '', diastolic = ''] = formData.BP.split('/');
-    const newBP = part === 'systolic' 
+  const handleBPChange = (part, newValue) => {
+    const [systolic = '', diastolic = ''] = formData["Blood Pressure"].split('/');
+    const newBP = part === 'systolic'
       ? `${newValue}/${diastolic}`
       : `${systolic}/${newValue}`;
-    setFormData(prev => ({ ...prev, BP: newBP }));
-  };
-
-  const handleVisualAcuityChange = (part, newValue) => {
-    const [left = '', right = ''] = formData["Visual Acuity Test"].split('/');
-    const newVA = part === 'left' 
-      ? `${newValue}/${right}`
-      : `${left}/${newValue}`;
-    setFormData(prev => ({ ...prev, "Visual Acuity Test": newVA }));
-  };
-
-  const handleTonometryChange = (e) => {
-    const value = e.target.value.replace(/\D/g, '') || '0';
-    setFormData(prev => ({ ...prev, "Tonometry": `${value} mmHg` }));
+    setFormData(prev => ({ ...prev, "Blood Pressure": newBP }));
   };
 
   const formConfig = [
-    // Blood Tests Section
     {
-      title: "Blood Tests",
+      title: "Personal Information",
       fields: [
-        { name: "CBC (Complete Blood Count)", type: "number" },
-        { name: "LFT (Liver Function Test)", type: "number" },
-        { name: "RFT (Renal Function Test)", type: "number" },
-        { name: "Blood Glucose Test", type: "number" },
-        { name: "Lipid Profile", type: "number" },
-        { name: "Thyroid Function Test", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "HbA1c Test", type: "number" },
-        { name: "PSA Test", type: "select", options: ["Normal", "Abnormal"] }
+        { name: "Age", type: "number" },
+        { name: "Gender", type: "select", options: ["Male", "Female", "Other"] },
+        { name: "Weight (kg)", type: "number" },
+        { name: "Height (cm)", type: "number" },
+        { name: "Smoking", type: "select", options: ["Yes", "No", "Occasionally"] },
+        { name: "Alcohol Consumption", type: "select", options: ["Yes", "No", "Occasionally"] }
       ]
     },
-    // Imaging Studies Section
     {
-      title: "Imaging Studies",
+      title: "Vital Signs",
       fields: [
-        { name: "X-ray", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "MRI", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "CT Scan", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "Ultrasound", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "PET Scan", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "Mammography", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "Bone Density Test", type: "select", options: ["Normal", "Abnormal"] }
-      ]
-    },
-    // Cardiac Tests Section
-    {
-      title: "Cardiac Tests",
-      fields: [
-        { 
-          type: "custom", 
+        {
+          type: "custom",
+          label: "Blood Pressure",
           component: (
             <div className="input-group-slash">
               <Input
                 variant="soft"
                 type="number"
-                value={formData.BP.split('/')[0] || ''}
-                onChange={(e) => handleBpChange('systolic', e.target.value)}
+                value={formData["Blood Pressure"].split('/')[0] || ''}
+                onChange={(e) => handleBPChange('systolic', e.target.value)}
               />
               <span>/</span>
               <Input
                 variant="soft"
                 type="number"
-                value={formData.BP.split('/')[1] || ''}
-                onChange={(e) => handleBpChange('diastolic', e.target.value)}
+                value={formData["Blood Pressure"].split('/')[1] || ''}
+                onChange={(e) => handleBPChange('diastolic', e.target.value)}
               />
             </div>
-          ),
-          label: "BP"
+          )
         },
-        { name: "Echocardiogram", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "ECG", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "Holter Monitor", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "Cardiac Stress Test", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "Angiography", type: "select", options: ["Normal", "Abnormal"] }
+        { name: "Heart Rate", type: "number" },
+        { name: "Body Temperature", type: "number" }
       ]
     },
-    // Lung Function Tests Section
     {
-      title: "Lung Function Tests",
+      title: "Common Lab Tests",
       fields: [
-        { name: "Pulmonary Function Test", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "COVID-19 Test", type: "select", options: ["Negative", "Positive"] },
-        { name: "Mantoux Test (TB Test)", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "Intradermal Test", type: "select", options: ["Normal", "Abnormal"] }
-      ]
-    },
-    // Eye Tests Section
-    {
-      title: "Eye Tests",
-      fields: [
-        { 
-          type: "custom",
-          component: (
-            <div className="input-group-slash">
-              <Input
-                variant="soft"
-                type="number"
-                value={formData["Visual Acuity Test"].split('/')[0] || ''}
-                onChange={(e) => handleVisualAcuityChange('left', e.target.value)}
-              />
-              <span>/</span>
-              <Input
-                variant="soft"
-                type="number"
-                value={formData["Visual Acuity Test"].split('/')[1] || ''}
-                onChange={(e) => handleVisualAcuityChange('right', e.target.value)}
-              />
-            </div>
-          ),
-          label: "Visual Acuity Test"
-        },
-        { 
-          type: "custom",
-          component: (
-            <Input
-              variant="soft"
-              type="number"
-              value={formData.Tonometry.replace(' mmHg', '')}
-              onChange={handleTonometryChange}
-              endDecorator="mmHg"
-            />
-          ),
-          label: "Tonometry"
-        },
-        { name: "Retinal Examination", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "Slit-Lamp Examination", type: "select", options: ["Normal", "Abnormal"] }
-      ]
-    },
-    // Ear Tests Section
-    {
-      title: "Ear Tests",
-      fields: [
-        { name: "Audiometry", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "Tympanometry", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "Otoacoustic Emissions Test", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "Auditory Brainstem Response (ABR)", type: "select", options: ["Normal", "Abnormal"] }
-      ]
-    },
-    // Infectious Disease Tests Section
-    {
-      title: "Infectious Disease Tests",
-      fields: [
-        { name: "Blood Culture", type: "select", options: ["Negative", "Positive"] },
-        { name: "HIV Test", type: "select", options: ["Negative", "Positive"] },
-        { name: "Hepatitis Test", type: "select", options: ["Negative", "Positive"] },
-        { name: "Sputum Test", type: "select", options: ["Negative", "Positive"] }
-      ]
-    },
-    // Cancer Screenings Section
-    {
-      title: "Cancer Screenings",
-      fields: [
-        { name: "Pap Smear", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "Skin Biopsy", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "Colonoscopy", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "Endoscopy", type: "select", options: ["Normal", "Abnormal"] }
-      ]
-    },
-    // Other Diagnostics Section
-    {
-      title: "Other Diagnostics",
-      fields: [
-        { name: "EEG", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "EMG", type: "select", options: ["Normal", "Abnormal"] },
+        { name: "Blood Glucose", type: "number" },
+        { name: "Cholesterol", type: "number" },
         { name: "Urinalysis", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "Stool Test", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "Allergy Test", type: "select", options: ["Normal", "Abnormal"] },
-        { name: "Genetic Testing", type: "select", options: ["Normal", "Abnormal"] }
+        { name: "Liver Function Test", type: "select", options: ["Normal", "Abnormal"] },
+        { name: "Kidney Function Test", type: "select", options: ["Normal", "Abnormal"] }
+      ]
+    },
+    {
+      title: "Infection Screening",
+      fields: [
+        { name: "COVID-19 Test", type: "select", options: ["Negative", "Positive"] },
+        { name: "HIV Test", type: "select", options: ["Negative", "Positive"] }
+      ]
+    },
+    {
+      title: "Imaging & Diagnostics",
+      fields: [
+        { name: "ECG", type: "select", options: ["Normal", "Abnormal"] },
+        { name: "X-ray", type: "select", options: ["Normal", "Abnormal"] }
       ]
     }
   ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
     setLoading(true);
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 3000));
-    
-    // Static demo data
-    setResults({
-      count: 2,
-      diseases: ['Hypertension', 'Type 2 Diabetes']
-    });
-    
-    setLoading(false);
+    const payload = {
+      ...formData,
+      Symptoms: freeSymptoms
+    };
+
+    try {
+      const response = await fetch('https://vaishnavakshansh.pythonanywhere.com/diagnose', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await response.json();
+      setResults(data);
+    } catch (error) {
+      console.error('Error:', error);
+      setResults({ error: 'Something went wrong. Please try again.' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSave = async () => {
+    const nickname = prompt("Enter a nickname for this diagnosis:");
+    if (!nickname) return;
+
+    try {
+      await API.post('/history/add', {
+        nickname,
+        request: {
+          ...formData,
+          Symptoms: freeSymptoms
+        },
+        response: results,
+        timestamp: new Date().toISOString()
+      });
+
+      alert("Diagnosis saved successfully.");
+    } catch (err) {
+      console.error("Save error:", err);
+      alert("Failed to save diagnosis.");
+    }
   };
 
   return (
@@ -288,7 +170,7 @@ const Prediction = () => {
                       onChange={(_, value) => handleChange(value, field.name)}
                       variant="soft"
                     >
-                      {field.options.map((option) => (
+                      {field.options.map(option => (
                         <Option key={option} value={option}>{option}</Option>
                       ))}
                     </Select>
@@ -307,38 +189,52 @@ const Prediction = () => {
             </div>
           </div>
         ))}
+
+        <div className="form-section">
+          <h3>Additional Symptoms</h3>
+          <div className="input-item">
+            <label>Describe any symptoms not listed above:</label>
+            <Textarea
+              variant="soft"
+              minRows={3}
+              value={freeSymptoms}
+              onChange={(e) => setFreeSymptoms(e.target.value)}
+            />
+          </div>
+        </div>
+
         <div className="submit-section">
-          <button type="submit">Submit All Results</button>
+          <button type="submit" disabled={loading}>
+            {loading ? "Submitting..." : "Submit All Results"}
+          </button>
         </div>
       </form>
 
-      {results || loading ? (
+      {results && (
         <div className="results-section">
-          {loading ? (
-            <div className="shimmer-loading">
-              <div className="shimmer-line"></div>
-              <div className="shimmer-line"></div>
-              <div className="shimmer-line"></div>
-            </div>
+          {results.error ? (
+            <p className="error">{results.error}</p>
           ) : (
             <div className="results-content">
               <h3>Health Assessment Results</h3>
-              <div className="results-summary">
-                <p>Potential conditions detected: <strong>{results.count}</strong></p>
-                <div className="disease-list">
-                  <p>Possible conditions:</p>
-                  <ul>
-                    {results.diseases.map((disease, index) => (
-                      <li key={index}>{disease}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+              <p>Potential Conditions: <strong>{results.diseases?.length || 0}</strong></p>
+              {results.diseases?.length > 0 && (
+                <ul className="disease-list">
+                  {results.diseases.map((disease, idx) => (
+                    <li key={idx}>{disease}</li>
+                  ))}
+                </ul>
+              )}
+              {results.recommended_doctor && (
+                <p><strong>Recommended Doctor:</strong> {results.recommended_doctor}</p>
+              )}
+              <button className="save-btn" onClick={handleSave}>
+                Save the Data
+              </button>
             </div>
           )}
         </div>
-      ) : null}
-
+      )}
     </div>
   );
 };

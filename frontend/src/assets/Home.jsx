@@ -1,5 +1,8 @@
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+    const navigate = useNavigate();
+    
     return (
         <div className="home-container">
 
@@ -84,7 +87,7 @@ const Home = () => {
             <div className="home-div-4">
                 <div className="hd41">
                     <h2>⏱️ Time to Diagnose</h2>
-                    <button>Start Now!</button>
+                    <button onClick={() => navigate("/prediction")}>Start Now!</button>
                 </div>
                 <div></div>
                 <div className="hd42">
