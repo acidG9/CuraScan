@@ -10,8 +10,8 @@ const cors = require('cors');
 
 app.use(cors());
 
-app.get('/', (res) => {
-  res.send('CORS enabled');
+app.get('/', (req, res) => {
+  res.send('Server is live and CORS enabled');
 });
 
 const authRoutes = require('./routes/auth');
