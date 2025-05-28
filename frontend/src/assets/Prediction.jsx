@@ -228,6 +228,9 @@ const Prediction = () => {
               {results.recommended_doctor && (
                 <p><strong>Recommended Doctor:</strong> {results.recommended_doctor}</p>
               )}
+              {results.brief_recommendation && (
+                <p><strong>Brief Recommendation:</strong> {results.brief_recommendation}</p>
+              )}
               <button className="save-btn" onClick={handleSave}>
                 Save the Data
               </button>

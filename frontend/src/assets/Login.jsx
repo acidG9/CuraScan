@@ -5,6 +5,7 @@ import API from '../axios';
 const Login = () => {
     const [isRegistered, setIsRegistered] = React.useState(true);
     const [showPass, setShowPass] = React.useState(false);
+    const [loading, setLoading] = React.useState(false);
     const navigate = useNavigate();
 
     const [rFormData, setRFormData] = React.useState({
@@ -22,16 +23,14 @@ const Login = () => {
 
     async function handleSubmit(e) {
         e.preventDefault();
+        setLoading(true);
         try {
             if (isRegistered) {
-                // LOGIN
                 const res = await API.post('/auth/login', lFormData);
                 localStorage.setItem('token', res.data.token);
                 navigate('/home');
             } else {
-                // REGISTER
                 await API.post('/auth/register', rFormData);
-                // Auto-login after register
                 const res = await API.post('/auth/login', {
                     username: rFormData.username,
                     password: rFormData.password
@@ -41,6 +40,8 @@ const Login = () => {
             }
         } catch (err) {
             alert(err.response?.data?.error || 'Something went wrong');
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -102,8 +103,8 @@ const Login = () => {
                         </div>
                     </div>
 
-                    <button type="submit" className="submit-btn">
-                        {isRegistered ? "Sign In" : "Create Account"}
+                    <button type="submit" className="submit-btn" disabled={loading}>
+                        {loading ? <span className="spinner"></span> : (isRegistered ? "Sign In" : "Create Account")}
                     </button>
 
                     <p className="toggle-text">
