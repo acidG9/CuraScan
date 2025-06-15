@@ -25,6 +25,6 @@ An AI-powered application that takes **user-entered symptoms and medical report 
 - **API**: Python (Flask)
 - **Backend**: Express (node)
 - **Database**: MongoDB
-- **Frontend**: React/Zustand
+- **Frontend**: React
 
 ---
