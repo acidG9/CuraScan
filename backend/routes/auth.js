@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const auth = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
@@ -30,10 +31,18 @@ router.post('/login', async (req, res) => {
     const validPass = await bcrypt.compare(password, user.password);
     if (!validPass) return res.status(400).json({ error: 'Invalid username or password' });
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
     res.json({ token });
   } catch (err) {
     res.status(500).json({ error: 'Server error' });
+  }
+});
+
+router.get('/verify', auth, async(req, res) => {
+  try {
+    res.json({ valid: true, userId: req.user.userId });
+  } catch (err) {
+    res.status(500).json({ error: 'something wrong with token validity controller' });
   }
 });
 

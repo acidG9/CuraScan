@@ -8,8 +8,8 @@ const Home = () => {
 
             <div className="home-div-1">
                 <div className="hd11">
-                    <h2>✨ Predict</h2>
-                    <h2>🔒 Prevent ⚙️ Prepare</h2>
+                    <h2 className="removal-heading">✨ Predict</h2>
+                    <h2 className="removal-heading">🔒 Prevent ⚙️ Prepare</h2>
                     <h3>Your AI Companion for Early Diagnosis</h3>
                     <p>Cura Scan helps you stay one step ahead of your health by using cutting-edge AI to analyze 
                        your symptoms and lab report values. Whether you're checking for early signs or just curious 
@@ -25,7 +25,7 @@ const Home = () => {
 
             <div className="home-div-2">
                 <div className="hd21">
-                    <h2>🚀 The Future of Diagnosis Is Instant</h2>
+                    <h2 className="removal-heading">🚀 The Future of Diagnosis Is Instant</h2>
                     <h3>Instant Medical Insights, Powered by Next-Gen AI</h3>
                     <p>Imagine a hospital where test machines are directly integrated with our AI — the moment a lab test 
                        is completed, Cura Scan analyzes the data and instantly detects possible diseases, eliminating long wait times.<br />
