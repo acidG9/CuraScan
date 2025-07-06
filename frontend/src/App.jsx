@@ -7,47 +7,55 @@ import Prediction from "./assets/Prediction";
 import Login from "./assets/Login";
 import History from "./assets/History";
 import API from "./axios";
+import { useNavigate } from "react-router-dom";
 
-const isAuthenticated = async () => {
-  const token = localStorage.getItem("token");
-  if (!token) return false;
 
-  try {
-    const res = await API.get("/auth/verify");
-    return res.data.valid;
-  } catch (err) {
-    localStorage.removeItem("token");
-    console.error(err);
-    return false;
-  }
-};
-
-const ProtectedRoute = ({ children }) => {
-  const [allowed, setAllowed] = useState(null);
-
-  useEffect(() => {
-    const checkAuth = async () => {
-      const result = await isAuthenticated();
-      setAllowed(result);
-    };
-    checkAuth();
-  }, []);
-
-  if (allowed === null) {
-    return (
-      <div className="loading-screen">
-        <div className="loading-content">
-          <div className="loading-spinner"></div>
-          <div>Checking Authentication...</div>
-        </div>
-      </div>
-    );
-  }
-  
-  return allowed ? children : <Navigate to="/" />;
-};
 
 function App() {
+
+  const navigate = useNavigate();
+
+  const isAuthenticated = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) return false;
+  
+    try {
+      const res = await API.get("/auth/verify");
+      return res.data.valid;
+    } catch (err) {
+      localStorage.removeItem("token");
+      navigate("/")
+      
+      console.error(err);
+      return false;
+    }
+  };
+  
+  const ProtectedRoute = ({ children }) => {
+    const [allowed, setAllowed] = useState(null);
+  
+    useEffect(() => {
+      const checkAuth = async () => {
+        const result = await isAuthenticated();
+        setAllowed(result);
+      };
+      checkAuth();
+    }, []);
+  
+    if (allowed === null) {
+      return (
+        <div className="loading-screen">
+          <div className="loading-content">
+            <div className="loading-spinner"></div>
+            <div>Checking Authentication...</div>
+          </div>
+        </div>
+      );
+    }
+    
+    return allowed ? children : <Navigate to="/" />;
+  };
+
   return (
     <Routes>
       <Route
