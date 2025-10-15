@@ -950,21 +950,22 @@ button[type="submit"]:hover {
   }
 }
 
-.diagnosis-history-page {
-  min-height: 75vh;
-  max-width: 900px;
+.diagnosis-dashboard {
+  min-height: 85vh;
+  max-width: 1000px;
   margin: 2rem auto;
-  padding: 1rem 1.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #e0f7f5 0%, #f1fffd 100%);
+  border-radius: 16px;
   font-family: "Segoe UI", sans-serif;
-  background-color: #e0f7f5;
-  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 121, 107, 0.1);
 }
 
-.diagnosis-history-page h1 {
+.diagnosis-dashboard h1 {
   text-align: center;
   color: #00796b;
-  margin-bottom: 2rem;
   font-size: 2rem;
+  margin-bottom: 2rem;
 }
 
 .no-history {
@@ -974,73 +975,125 @@ button[type="submit"]:hover {
 }
 
 .history-card {
-  background: #ffffff;
+  background: #fff;
   border: 1px solid #b2dfdb;
   border-left: 6px solid #00796b;
-  border-radius: 10px;
-  padding: 1rem;
+  border-radius: 12px;
   margin-bottom: 1.5rem;
-  box-shadow: 0 2px 6px rgba(0, 121, 107, 0.1);
-  transition: transform 0.2s ease-in-out;
+  padding: 1.2rem 1.5rem;
+  box-shadow: 0 3px 8px rgba(0, 121, 107, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .history-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 14px rgba(0, 121, 107, 0.15);
 }
 
-.history-card h3 {
-  margin-bottom: 0.5rem;
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.card-header h3 {
+  color: #004d40;
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.timestamp {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.card-section {
+  margin-top: 1rem;
+}
+
+.card-section h4 {
   color: #00796b;
-  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
 }
 
-.history-card p {
-  margin: 0.3rem 0;
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.6rem 1rem;
+}
+
+.info-item {
+  background: #f1fefc;
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+}
+
+.info-key {
+  font-weight: 600;
+  color: #004d40;
+  display: block;
+  font-size: 0.9rem;
+}
+
+.info-value {
   color: #333;
-  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+.disease-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.disease-list li {
+  background: #00796b;
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.brief-recommendation {
+  background: #f0fffa;
+  border-left: 4px solid #26a69a;
+  padding: 0.8rem;
+  border-radius: 8px;
+  color: #004d40;
+  margin-top: 0.4rem;
   font-size: 0.95rem;
 }
 
-.history-card pre {
-  background-color: #f1fefc;
-  padding: 0.6rem;
-  border-radius: 6px;
-  overflow-x: auto;
-  font-size: 0.85rem;
-  color: #004d40;
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-
 @media (max-width: 768px) {
-  .diagnosis-history-page {
+  .diagnosis-dashboard {
     padding: 1rem;
   }
 
-  .history-card {
-    padding: 0.8rem;
+  .card-header h3 {
+    font-size: 1.2rem;
   }
 
-  .history-card h3 {
-    font-size: 1.1rem;
-  }
-
-  .history-card p {
-    font-size: 0.9rem;
-  }
-
-  .history-card pre {
+  .disease-list li {
     font-size: 0.8rem;
+  }
+
+  .info-grid {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   }
 }
 
 @media (max-width: 480px) {
-  .diagnosis-history-page h1 {
+  .diagnosis-dashboard h1 {
     font-size: 1.5rem;
   }
 
   .history-card {
-    border-left-width: 4px;
+    padding: 1rem;
   }
 }
 
